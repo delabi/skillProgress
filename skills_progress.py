@@ -52,7 +52,7 @@ def view_skills(skills):
 def mark_items_done(skills, skills_done):
     """
     Accepts the skills, skills_not_done dictionaries and adds items in skills
-    not done.
+    done.
     """
     num_skill = input("Enter the number of skill done: ")
     for key, item in skills.items():
@@ -68,15 +68,23 @@ def view_items_done(skills_done):
         print(str(key) + ". ", value)
 
 def view_incomplete_skills(skills, skills_done):
+    """
+    Accepts the skills, skills_done dictionaries and prints out skills
+    not done.
+    """
     skills_not_done = {}
-    for key, value in skills_done.items():
-        #for key_skill, value_skill in skills.items():
-        if key, value not in skills_done.items():
-            skills_not_done[key] = value
-    
-        
-    for key, value in skills_not_done.items():
-        print(str(key) + ". ", value)
+    for key, value in skills.items():
+        if value not in skills_done.values():
+            print(value)
+            
+
+def progress(skills, skills_done):
+    """
+    gives out the progress percentage of the user
+    """
+
+    prog = (len(skills_done)/len(skills))*100
+    print(str(prog) + "%")
     
 
 def main():
@@ -107,7 +115,7 @@ def main():
             view_items_done(skills_done)
             print()
         elif menu_num == 3:
-            view_items_done()
+            progress(skills, skills_done)
             print()
         elif menu_num == 4:
             view_incomplete_skills(skills, skills_done)
